@@ -1,0 +1,18 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+RUN apk add --no-cache bash nano curl && \
+    npm install -g npm@latest
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+ENV PORT=3100
+EXPOSE 3100
+
+CMD ["npm", "run", "dev"]

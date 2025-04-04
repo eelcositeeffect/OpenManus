@@ -1,36 +1,35 @@
+
 services:
-  app:
+  frontend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.frontend
     ports:
-      - "3055:3000" # 3055 extern, 3000 in container
+      - "3055:3100"
     environment:
       - NODE_ENV=development
-      - DATABASE_URL=postgresql://psusr_openmanus_eelci:password_openmanus@postgres:5432/psdb_openmanus
     volumes:
       - .:/app
       - /app/node_modules
-    env_file:
-      - .env
-    depends_on:
-      - python
     networks:
       - database4life
+    depends_on:
+      - backend
 
-  python:
-    image: python:3.11
-    container_name: openmanus-python
-    volumes:
-      - .:/app
-    env_file:
-      - .env
-    working_dir: /app
-    command: bash -c "pip install -r requirements.txt && uvicorn main:app --host 0.0.0.0 --port 8055 --reload"
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
     ports:
       - "8055:8055"
+    volumes:
+      - .:/app
     networks:
       - database4life
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql://psusr_openmanus_eelci:password_openmanus@postgres:5432/psdb_openmanus
 
 networks:
   database4life:

@@ -3,14 +3,15 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
+        "dev": "next dev -H 0.0.0.0 -p 3100",
         "build": "next build",
-        "start": "next start",
+        "start": "next start -p 3100",
         "lint": "next lint"
     },
     "dependencies": {
         "@prisma/client": "^5.10.0",
-        "next": "14.1.0",
+        "nano": "^10.1.4",
+        "next": "^14.2.26",
         "pg": "^8.14.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
@@ -20,6 +21,7 @@
         "@types/react": "^18.2.0",
         "@types/react-dom": "^18.2.0",
         "autoprefixer": "^10.4.17",
+        "playwright": "^1.51.1",
         "postcss": "^8.4.35",
         "prisma": "^5.10.0",
         "tailwindcss": "^3.4.1",
