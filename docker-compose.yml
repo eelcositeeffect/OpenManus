@@ -29,7 +29,7 @@ services:
     env_file:
       - .env
     environment:
-      - DATABASE_URL=postgresql://psusr_openmanus_eelci:password_openmanus@postgres:5432/psdb_openmanus
+      - DATABASE_URL=postgresql://psusr_opeus_eelci:pasrd_anus@postgres:5438/db_openmanus
 
 networks:
   database4life:
